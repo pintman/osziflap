@@ -73,7 +73,7 @@ def px(x,y):
     GPIO.output(pins, xbin+ybin)
 
 def vline(x, gap_start,gap_end):
-    for y in range(2**len(pins_ch2)):
+    for y in range(yres()):
         if gap_start < y < gap_end:
             continue
         
