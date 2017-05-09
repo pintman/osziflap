@@ -27,9 +27,9 @@ DEAD_SCREEN = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                [0,0,1,0,0,0,1,1,1,1,1,0,0,0,0,0],
                [0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0],
                [0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]                             
+               [1,1,1,0,0,1,0,0,1,0,0,1,0,0,1,0],
+               [0,1,0,0,1,0,1,0,0,0,0,1,0,0,1,0],
+               [0,1,0,0,0,1,0,0,0,0,0,1,1,0,1,1]]                             
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
@@ -105,8 +105,8 @@ def bird_alive(current_x, bird_y, gap_start, gap_end):
     return current_x != 0 or gap_start < bird_y < gap_end
 
 def draw_image(image):
-    for x in range(xres()):
-        for y in range(yres()):
+    for x in range(xres()+1):
+        for y in range(yres()+1):
             if image[y // 2][x] == 1:
                 px(x,yres() - y)
     
