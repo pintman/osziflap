@@ -19,19 +19,16 @@ pins_ch1 = [33,31,29,23]
 pins_ch2 = [19,15,13,11,7]
 pins = pins_ch1 + pins_ch2
 
-pin_taster = 40
-pin_start = 38
-pin_audio1 = 36
-pin_audio2 = 32
+pin_taster = 40 # controlling the bird (using switch or pontentiometer)
+pin_start = 38  # a switch controlling the reset/start
+pin_audio1 = 36 # audio1 each time the bird is flapping
+pin_audio2 = 32 # audio2 each time a wave has passed
 pins_in = [pin_taster,pin_start]
 
 #snd_flap = pygame.mixer.Sound("snd_flap.wav")
 #snd_gull = pygame.mixer.Sound("snd_gull.wav")
 
-# bird 
-#bird = 10
-#points = 0
-
+# A screen shown upon the dead of the bird.
 #               0         5         0         5
 DEAD_SCREEN = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
@@ -77,7 +74,6 @@ def xres():
 def yres():
     return 2**len(pins_ch2)-1
 
-
 def test_all():
     #print("testing all possible values")
     for n in range(2**len(pins)):
@@ -111,7 +107,8 @@ def px(x,y):
     ybin = zeros + ybin
     GPIO.output(pins, xbin+ybin)
 
-def vline(x, gap_start,gap_end):
+def vline(x, gap_start, gap_end):
+    """Drawing a vertical line. A gap is drawn between gap_start and gap_end."""
     for y in range(yres()):
         if gap_start < y < gap_end:
             continue
@@ -125,6 +122,8 @@ def bird_alive(current_x, bird_y, gap_start, gap_end):
     return current_x != 0 or gap_start < bird_y < gap_end
 
 def draw_image(image):
+    """The the image. Image is a two dimensional array of 1s or 0s. Each
+    line is drawn twice."""
     for x in range(xres()+1):
         for y in range(yres()+1):
             if image[y // 2][x] == 1:
