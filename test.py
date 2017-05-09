@@ -3,8 +3,8 @@ import time
 
 # 2x6 Bit
 # pin 27 reserver for i2c
-pins =  [37,35,33,31,29,23, #ch1
-         21,19,15,13,11,7]  #ch2
+pins =  [33,31,29,23, #ch1
+         19,15,13,11,7]  #ch2
 #pins = [29,31,33,35,37]
 #pins = [29,31,33]
 
@@ -25,18 +25,21 @@ def int2bin(integer):
     return res
     
 def test_all():
-    print("testing all possible values")
+    #print("testing all possible values")
     for n in range(2**len(pins)):
+        if n % 8 == 0:
+            r = [0] * len(pins)
+            
         r = int2bin(n)
         if len(r) != len(pins):
             # prepend 0s
             zeros = [0] * (len(pins) - len(r))
             r = zeros + r
 
-        print(n, r)
+        #print(n, r)
 
         GPIO.output(pins, r)
-        time.sleep(0.5)
+        #time.sleep(0.01)
     
 
 def test_constant():
