@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import random
 
 # 2x5 Bit
 pins_ch1 = [33,31,29,23]   # x-resolution: 2**len(pin...)
@@ -13,6 +14,23 @@ bird = 10
 #         19,15,13,11,7]  #ch2
 #pins = [29,31,33,35,37]
 #pins = [29,31,33]
+#               0         5         0         5
+DEAD_SCREEN = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0],
+               [0,0,1,1,0,0,1,1,1,0,0,0,0,0,0,0],
+               [0,1,0,1,1,1,1,0,0,1,0,0,0,0,0,0],
+               [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0],
+               [0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,0],
+               [0,0,1,1,0,1,1,0,0,1,1,1,0,0,1,0],
+               [0,0,1,0,0,0,1,1,1,1,1,0,0,0,0,0],
+               [0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+               [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]                             
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
@@ -33,10 +51,10 @@ def int2bin(integer):
     return res
 
 def xres():
-    return 2**len(pins_ch1)
+    return 2**len(pins_ch1)-1
 
 def yres():
-    return 2**len(pins_ch2)
+    return 2**len(pins_ch2)-1
 
 
 def test_all():
@@ -87,22 +105,23 @@ def bird_alive(current_x, gap_start, gap_end):
     return x != 0 or gap_start < bird < gap_end
 
 def draw_final_screen(image):
-    for y in range(
-    pass
+    for x in range(xres()):
+        for y in range(yres()):
+            if image[y // 2][x] == 1:
+                px(x,yres() - y)
     
 
 if __name__ == "__main__":
     setup()
     gap_start, gap_end = 10,18    
-    maxx = 2**len(pins_ch1)-1
     bird_died = False
     points = 0
 
     while not bird_died:            
-        for x in range(maxx,-1,-1):
+        for x in range(xres(),-1,-1):
             # handle input
             if GPIO.input(pin_taster):
-                bird = min(bird+1, 2**len(pins_ch2)-1)
+                bird = min(bird+1, yres())
             else:
                 bird = max(0, bird-1)
                 
@@ -115,11 +134,13 @@ if __name__ == "__main__":
             draw_bird() # must(!) be drawn last
 
             # wait some time
-            time.sleep(0.05)
+            time.sleep(0.1)
             
         points += 1
-        
-    draw_final_screen()
+
+    while True:
+        draw_final_screen(DEAD_SCREEN)
+        time.sleep(0.001)
 
             
     GPIO.cleanup()
