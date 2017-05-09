@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import random
+#import pygame.mixer
 
 # pin config
 pins_ch1 = [33,31,29,23]   # x-resolution: 2**len(pin...)
@@ -8,6 +9,12 @@ pins_ch2 = [19,15,13,11,7] # y-resolution: 2**len(pin...)
 pins = pins_ch1 + pins_ch2
 pin_taster = 40
 pin_start = 38
+pin_audio1 = 36
+pin_audio2 = 32
+pins_in = [pin_taster,pin_start]
+
+#snd_flap = pygame.mixer.Sound("snd_flap.wav")
+#snd_gull = pygame.mixer.Sound("snd_gull.wav")
 
 # bird 
 #bird = 10
@@ -33,14 +40,16 @@ DEAD_SCREEN = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 
 def setup():
     GPIO.setmode(GPIO.BOARD)
-    print("setup pins",pins)
+    print("setup pins out:",pins, "in:", pins_in)
     print("resolution", 2**len(pins_ch1), "x", 2**len(pins_ch2))
 
     for p in pins:
         GPIO.setup(p, GPIO.OUT)
-    GPIO.setup(pin_taster, GPIO.IN)
-    GPIO.setup(pin_start, GPIO.IN)
-
+    GPIO.setup([pin_audio1, pin_audio2], GPIO.OUT)
+    
+    for p in pins_in:
+        GPIO.setup(p, GPIO.IN)
+        
         
 def int2bin(integer):
     b = bin(integer)
@@ -115,12 +124,19 @@ def draw_points(points):
     for i in range(points):
         px(i, 0)
 
+def beep(times):
+    GPIO.output(pin_audio2, True)
+    time.sleep(times)
+    GPIO.output(pin_audio2, False)
                 
 def start_game():
     gap_start, gap_end = 10,18    
     bird_died = False
     points = 0
     bird = 10
+
+    GPIO.output(pin_audio1, True)
+    GPIO.output(pin_audio2, False)
 
     while not bird_died:            
         for x in range(xres(),-1,-1):
@@ -143,13 +159,17 @@ def start_game():
             time.sleep(0.1)
             
         points += 1
+        beep(0.01)
+        
         rnd_start = random.randint(10, yres()-15)
         if points >= 10: # xres():
             gap_start, gap_end = 0,1
         else:
             gap_start, gap_end = rnd_start, rnd_start+5
 
+    beep(0.2)
     while not GPIO.input(pin_start):
+        GPIO.output(pin_audio1, False)
         draw_image(DEAD_SCREEN)
         time.sleep(0.001)
         
