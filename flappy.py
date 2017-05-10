@@ -15,8 +15,8 @@ import random
 #import pygame.mixer
 
 # pin configuration
-pins_ch1 = [33,31,29,23]
-pins_ch2 = [19,15,13,11,7]
+pins_ch1 = [33,31,26,23]
+pins_ch2 = [19,15,13,11,16]
 pins = pins_ch1 + pins_ch2
 
 pin_taster = 40 # controlling the bird (using switch or pontentiometer)
@@ -96,7 +96,7 @@ def test_constant():
         GPIO.output(p, 1)
         #print(p)
 
-def px(x,y):
+def px(x,y, wait=0):
     xbin = int2bin(x)
     ybin = int2bin(y)
     
@@ -106,6 +106,8 @@ def px(x,y):
     zeros = [0] * (len(pins_ch2) - len(ybin))
     ybin = zeros + ybin
     GPIO.output(pins, xbin+ybin)
+    if wait > 0:
+        time.sleep(wait)
 
 def vline(x, gap_start, gap_end):
     """Drawing a vertical line. A gap is drawn between gap_start and gap_end."""
@@ -177,7 +179,7 @@ def start_game():
             # we are unfair here when the user gets too many points
             gap_start, gap_end = 0, 1
         else:
-            gap_start, gap_end = rnd_start, rnd_start+5
+            gap_start, gap_end = rnd_start, rnd_start+8
 
     beep(0.2)
     while not GPIO.input(pin_start):
@@ -190,5 +192,7 @@ def start_game():
 
 if __name__ == "__main__":
     setup()
+    #while True:
+    #    test_all()
     start_game()
     
