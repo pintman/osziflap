@@ -1,2 +1,2 @@
-![Overview](overview.jpg)
-![Demo](demo.mp4)
+![Overview](media/overview.jpg)
+![Demo](media/demo.mp4)
