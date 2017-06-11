@@ -13,4 +13,7 @@ driven by some of the (digital) GPIO pins of a RaspberryPi 3.
 ![Overview](media/overview_top.jpg)
 ![Overview](media/overview_top2.jpg)
 ![Overview](media/dac.jpg)
-![Demo](media/demo.mp4)
+
+Demo
+----
+![Demovideo at archive.org](https://archive.org/details/Osziflap_Demo) and ![YouTube](https://www.youtube.com/watch?v=7jtvtk3SSTg)
