@@ -16,4 +16,4 @@ driven by some of the (digital) GPIO pins of a RaspberryPi 3.
 
 Demo
 ----
-[Demovideo at archive.org](https://archive.org/details/Osziflap_Demo) and [YouTube](https://www.youtube.com/watch?v=7jtvtk3SSTg)
+[![Demovideo at archive.org](https://archive.org/download/Osziflap_Demo/Osziflap_Demo.thumbs/demo_000009.jpg)](https://archive.org/details/Osziflap_Demo) and [YouTube](https://www.youtube.com/watch?v=7jtvtk3SSTg)
