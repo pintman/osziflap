@@ -12,6 +12,7 @@ driven by some of the (digital) GPIO pins of a RaspberryPi 3.
 ![Overview](media/overview_all.jpg)
 ![Overview](media/overview_top.jpg)
 ![Overview](media/overview_top2.jpg)
+![Overview](media/schematic.png)
 ![Overview](media/dac.jpg)
 
 Demo
