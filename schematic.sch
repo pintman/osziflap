@@ -6534,7 +6534,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </class>
 </classes>
 <parts>
-<part name="RASBERRYPI" library="con-lstb" deviceset="MA20-2" device=""/>
+<part name="RASPBERRYPI" library="con-lstb" deviceset="MA20-2" device=""/>
 <part name="Y" library="con-coax" deviceset="R141426" device=""/>
 <part name="X" library="con-coax" deviceset="R141426" device=""/>
 <part name="CHIRP" library="buzzer" deviceset="F/QMBIII" device=""/>
@@ -6582,7 +6582,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <text x="-5.08" y="7.62" size="1.778" layer="91">digital analog converter (4 bit)</text>
 </plain>
 <instances>
-<instance part="RASBERRYPI" gate="G$1" x="78.74" y="55.88" rot="R180"/>
+<instance part="RASPBERRYPI" gate="G$1" x="78.74" y="55.88" rot="R180"/>
 <instance part="Y" gate="G$1" x="-33.02" y="0"/>
 <instance part="X" gate="G$1" x="-33.02" y="-12.7"/>
 <instance part="CHIRP" gate="G$1" x="137.16" y="-2.54" rot="R90"/>
@@ -6706,7 +6706,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$4" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="11"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="11"/>
 <wire x1="71.12" y1="68.58" x2="38.1" y2="68.58" width="0.1524" layer="91"/>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="38.1" y1="68.58" x2="38.1" y2="48.26" width="0.1524" layer="91"/>
@@ -6719,7 +6719,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="13"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="13"/>
 <wire x1="71.12" y1="66.04" x2="22.86" y2="66.04" width="0.1524" layer="91"/>
 <pinref part="R5" gate="G$1" pin="2"/>
 <wire x1="22.86" y1="66.04" x2="22.86" y2="48.26" width="0.1524" layer="91"/>
@@ -6727,7 +6727,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="15"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="15"/>
 <wire x1="71.12" y1="63.5" x2="7.62" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="R8" gate="G$1" pin="2"/>
 <wire x1="7.62" y1="63.5" x2="7.62" y2="48.26" width="0.1524" layer="91"/>
@@ -6735,7 +6735,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="19"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="19"/>
 <wire x1="71.12" y1="58.42" x2="-7.62" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="R11" gate="G$1" pin="2"/>
 <wire x1="-7.62" y1="58.42" x2="-7.62" y2="48.26" width="0.1524" layer="91"/>
@@ -6743,7 +6743,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="21"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="21"/>
 <wire x1="71.12" y1="55.88" x2="-22.86" y2="55.88" width="0.1524" layer="91"/>
 <pinref part="R14" gate="G$1" pin="2"/>
 <wire x1="-22.86" y1="55.88" x2="-22.86" y2="48.26" width="0.1524" layer="91"/>
@@ -6815,7 +6815,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="23"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="23"/>
 <wire x1="71.12" y1="53.34" x2="66.04" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="53.34" x2="66.04" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="66.04" y1="-2.54" x2="38.1" y2="-2.54" width="0.1524" layer="91"/>
@@ -6828,14 +6828,14 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <wire x1="63.5" y1="0" x2="22.86" y2="0" width="0.1524" layer="91"/>
 <pinref part="R19" gate="G$1" pin="2"/>
 <wire x1="22.86" y1="0" x2="22.86" y2="-7.62" width="0.1524" layer="91"/>
-<pinref part="RASBERRYPI" gate="G$1" pin="29"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="29"/>
 <wire x1="71.12" y1="45.72" x2="63.5" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="63.5" y1="45.72" x2="63.5" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="31"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="31"/>
 <wire x1="71.12" y1="43.18" x2="60.96" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="43.18" x2="60.96" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="2.54" x2="7.62" y2="2.54" width="0.1524" layer="91"/>
@@ -6845,7 +6845,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$19" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="33"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="33"/>
 <wire x1="71.12" y1="40.64" x2="58.42" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="40.64" x2="58.42" y2="5.08" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="5.08" x2="-7.62" y2="5.08" width="0.1524" layer="91"/>
@@ -6862,7 +6862,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <wire x1="119.38" y1="30.48" x2="119.38" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="38.1" x2="119.38" y2="38.1" width="0.1524" layer="91"/>
 <junction x="119.38" y="38.1"/>
-<pinref part="RASBERRYPI" gate="G$1" pin="38"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="38"/>
 <wire x1="86.36" y1="35.56" x2="91.44" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="35.56" x2="91.44" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="30.48" x2="119.38" y2="30.48" width="0.1524" layer="91"/>
@@ -6880,7 +6880,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <wire x1="104.14" y1="27.94" x2="104.14" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="86.36" x2="68.58" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="86.36" x2="68.58" y2="81.28" width="0.1524" layer="91"/>
-<pinref part="RASBERRYPI" gate="G$1" pin="1"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="1"/>
 <wire x1="68.58" y1="81.28" x2="71.12" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="119.38" y1="86.36" x2="104.14" y2="86.36" width="0.1524" layer="91"/>
 <junction x="104.14" y="86.36"/>
@@ -6888,7 +6888,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$23" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="40"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="40"/>
 <wire x1="86.36" y1="33.02" x2="88.9" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="88.9" y1="33.02" x2="88.9" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="BIRDCONTROL" gate="1" pin="S"/>
@@ -6900,7 +6900,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <pinref part="R28" gate="G$1" pin="2"/>
 <wire x1="139.7" y1="25.4" x2="139.7" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="139.7" y1="35.56" x2="96.52" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="RASBERRYPI" gate="G$1" pin="32"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="32"/>
 <wire x1="96.52" y1="35.56" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="43.18" x2="86.36" y2="43.18" width="0.1524" layer="91"/>
 </segment>
@@ -6914,7 +6914,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 </net>
 <net name="N$24" class="0">
 <segment>
-<pinref part="RASBERRYPI" gate="G$1" pin="36"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="36"/>
 <wire x1="93.98" y1="33.02" x2="93.98" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="38.1" x2="86.36" y2="38.1" width="0.1524" layer="91"/>
 <pinref part="R29" gate="G$1" pin="1"/>
@@ -6934,7 +6934,7 @@ Marquardt, RAFI, ITT, and others&lt;p&gt;
 <wire x1="-27.94" y1="-2.54" x2="-27.94" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="-15.24" x2="-27.94" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="-38.1" x2="53.34" y2="-38.1" width="0.1524" layer="91"/>
-<pinref part="RASBERRYPI" gate="G$1" pin="39"/>
+<pinref part="RASPBERRYPI" gate="G$1" pin="39"/>
 <wire x1="53.34" y1="-38.1" x2="68.58" y2="-38.1" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="-38.1" x2="68.58" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="68.58" y1="33.02" x2="71.12" y2="33.02" width="0.1524" layer="91"/>
