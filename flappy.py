@@ -36,6 +36,11 @@ DEAD_SCREEN = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                [0,1,0,0,1,0,1,0,0,0,0,1,0,0,1,0],
                [0,1,0,0,0,1,0,0,0,0,0,1,1,0,1,1]]                             
 
+# cache for binary representations of integer numbers. Using this
+# cache for faster lookup during rendering.
+int2bin_cache = {}
+
+
 def setup():
     GPIO.setmode(GPIO.BOARD)
     print("setup pins out:",pins, "in:", pins_in)
@@ -47,14 +52,14 @@ def setup():
     
     for p in pins_in:
         GPIO.setup(p, GPIO.IN)
-        
-        
+
+
 def int2bin(integer):
     b = bin(integer)
     res = []
-    for c in b[2:]: #ignoring 0b... at beginning
-        res.append( int(c) )
-
+    for c in b[2:]:  # ignoring 0b... at beginning
+        res.append(int(c))
+        
     return res
 
 def xres():
@@ -86,14 +91,26 @@ def test_constant():
         #print(p)
 
 def px(x,y, wait=0):
-    xbin = int2bin(x)
-    ybin = int2bin(y)
-    
-    zeros = [0] * (len(pins_ch1) - len(xbin))
-    xbin = zeros + xbin
+    if x in int2bin_cache and y in int2bin_cache:
+        # numbers found in cache -> using them
+        xbin = int2bin_cache[x]
+        ybin = int2bin_cache[y]
 
-    zeros = [0] * (len(pins_ch2) - len(ybin))
-    ybin = zeros + ybin
+    else:
+        # numbers not found in cache -> computing them and inserting
+        # them into the cache.
+        xbin = int2bin(x)
+        ybin = int2bin(y)
+
+        # prepending zeros to match number of pins
+        zeros = [0] * (len(pins_ch1) - len(xbin))
+        xbin = zeros + xbin
+        zeros = [0] * (len(pins_ch2) - len(ybin))
+        ybin = zeros + ybin
+
+        int2bin_cache[x] = xbin
+        int2bin_cache[y] = ybin
+
     GPIO.output(pins, xbin+ybin)
     if wait > 0:
         time.sleep(wait)
@@ -103,9 +120,9 @@ def vline(x, gap_start, gap_end):
     for y in range(yres()):
         if gap_start < y < gap_end:
             continue
-        
-        px(x,y)
-        
+
+        px(x, y)
+
 def draw_bird(bird_y_pos):
     px(0,bird_y_pos)
 
