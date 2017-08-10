@@ -120,21 +120,21 @@ def beep(times):
 
 
 def start_game():
-    gap_start, gap_end = 10, 18
+    gap_start, gap_end = 0 + 5 * XYDISTANCE
     bird_died = False
     points = 0
-    bird = 10
+    bird = 0
 
     GPIO.output(pin_audio1, True)
     GPIO.output(pin_audio2, False)
 
     while not bird_died:
-        for x in range(xres(), -1, -1):
+        for x in numpy.arange(xres(), -1, -XYDISTANCE):
             # handle input
             if GPIO.input(pin_taster):
-                bird = min(bird + 1, yres())
+                bird = min(bird + XYDISTANCE, yres())
             else:
-                bird = max(0, bird - 1)
+                bird = max(0.0, bird - XYDISTANCE)
 
             if not bird_alive(x, bird, gap_start, gap_end):
                 bird_died = True
@@ -153,12 +153,12 @@ def start_game():
         beep(0.01)
 
         # termine new gap for next wave
-        rnd_start = random.randint(10, yres() - 15)
+        rnd_start = random.randint(-10, 10) / 10
         if points >= 10:  # xres():
             # we are unfair here when the user gets too many points
-            gap_start, gap_end = 0, 1
+            gap_start, gap_end = 0, 0 + XYDISTANCE
         else:
-            gap_start, gap_end = rnd_start, rnd_start + 8
+            gap_start, gap_end = rnd_start, rnd_start + 4 * XYDISTANCE
 
     beep(0.2)
     while not GPIO.input(pin_start):
