@@ -6,8 +6,11 @@ import math
 class Soundgenerator:
     """Create sounds that can be fed into sounddevice.
 
-    All generated sound range from -1 to +1 as this is what is expected.
+    All generated sound values range from -1.0 to +1.0 as this is what
+    is expected.
+
     https://github.com/spatialaudio/python-sounddevice/issues/92#issuecomment-315096919
+
     """
     
     def __init__(self, samples=44100, chan=2, devicenr=0):
@@ -71,6 +74,5 @@ def main():
     sd.wait()
     print("finished")
 
-            
 if __name__ == "__main__":
     main()
