@@ -19,6 +19,19 @@ Demo
 ----
 [![Demovideo at archive.org](https://archive.org/download/Osziflap_Demo/Osziflap_Demo.thumbs/demo_000009.jpg)](https://archive.org/details/Osziflap_Demo) and [YouTube](https://www.youtube.com/watch?v=7jtvtk3SSTg)
 
+Version 2 - Audiooutput
+-----------------------
+
+A second version uses the audio jack of the raspberry pi to produce an analog 
+signal.
+
+![oszi_sine](media/sine_oszi.jpg)
+
+The connection is established via an audio to cinch adapter cable.
+
+![oszi_sine](media/audiojack_cinch_connection.jpg)
+
+
 Links
 -----
 
