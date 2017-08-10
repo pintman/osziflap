@@ -4,17 +4,23 @@ import math
 
 
 class Soundgenerator:
+    """Create sounds that can be fed into sounddevice.
+
+    All generated sound range from -1 to +1 as this is what is expected.
+    https://github.com/spatialaudio/python-sounddevice/issues/92#issuecomment-315096919
+    """
+    
     def __init__(self, samples=44100, chan=2, devicenr=0):
         sd.default.device = devicenr
         self.chan = chan
         self.samples = samples
 
-    def gen_random(self):
+    def gen_random(self) -> np.ndarray:
         # 44100 random samples between -1 and 1
         return np.random.uniform(-1, 1, self.samples)
         # data = np.random.uniform(0, 100, 44100)
 
-    def gen_sine(self):
+    def gen_sine(self) -> np.ndarray:
         data = np.empty((self.samples, self.chan),
                         dtype="float32")
         
