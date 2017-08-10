@@ -61,6 +61,7 @@ def px(x, y, wait=0):
     """Draw pixel a (x,y). x and y in [-1.0, +1.0]."""
 
     data = sg.gen_data([x], [y])
+    sounddevice.wait()
     sounddevice.play(data)
 
     if wait > 0:
