@@ -72,11 +72,23 @@ def vline(x, gap_start, gap_end):
     """Drawing a vertical line at position x. x is in [-1, +1]. A gap is drawn
     between gap_start and gap_end."""
 
+    # holding x/y-values for points to be drawn
+    xs = []
+    ys = []
+
+    i = 0
     for y in numpy.arange(-1, 1, XYDISTANCE):
         if gap_start < y < gap_end:
             continue
 
-        px(x, y)
+        xs[i] = x
+        ys[i] = y
+
+        i += 1
+
+    data = sg.gen_data(xs, ys)
+    sounddevice.wait()
+    sounddevice.play(data)
 
 
 def draw_bird(bird_y_pos):
