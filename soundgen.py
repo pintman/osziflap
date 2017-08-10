@@ -33,6 +33,10 @@ class Soundgenerator:
                 
         return data
 
+    def gen_data(self, left_data, right_data):
+        return np.array([left_data, right_data])
+
+
 """Accessing the audio jack on the pi:
 https://raspberrypi.stackexchange.com/questions/49600/how-to-output-audio-signals-through-gpio
 
