@@ -36,10 +36,10 @@ class Display:
         self.xydistance = xydistance
 
     def xres(self):
-        return int((2 / self.xydistance) + 1)
+        return int(((self.xymax - self.xymin) / self.xydistance) + 1)
 
     def yres(self):
-        return int((2 / self.xydistance) + 1)
+        return int(((self.xymax - self.xymin) / self.xydistance) + 1)
 
     def px(self, x: float, y: float, wait=0):
         """Draw pixel a (x,y). x and y in [-1.0, +1.0]."""
