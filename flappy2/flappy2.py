@@ -72,6 +72,9 @@ class Display:
 
             i += 1
 
+        self.draw_points(xs, ys)
+
+    def draw_points(self, xs, ys):
         data = self.soundgen.gen_data(xs, ys)
         sounddevice.wait()
         sounddevice.play(data)
@@ -84,7 +87,7 @@ class Display:
                 if image[y // 2][x] == 1:
                     self.px(x, self.yres() - y)
 
-    def draw_points(self, points):
+    def draw_score(self, points):
         for i in range(points):
             self.px(i, 0)
 
@@ -157,7 +160,7 @@ class Game:
 
                 # draw world
                 self.display.vline(x, gap_start, gap_end)
-                self.display.draw_points(score)
+                self.display.draw_score(score)
                 self.bird.draw_bird(self.display)  # must(!) be drawn last
 
                 # wait some time
