@@ -29,8 +29,10 @@ class Display:
                    [0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0],
                    [0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1]]
 
-    def __init__(self, xydistance=0.01):
+    def __init__(self, xydistance=0.01, xymin=-1.0, xymax=1.0):
         self.soundgen = soundgen.Soundgenerator()
+        self.xymin = xymin
+        self.xymax = xymax
         self.xydistance = xydistance
 
     def xres(self):
@@ -39,8 +41,10 @@ class Display:
     def yres(self):
         return int((2 / self.xydistance) + 1)
 
-    def px(self, x, y, wait=0):
+    def px(self, x: float, y: float, wait=0):
         """Draw pixel a (x,y). x and y in [-1.0, +1.0]."""
+        assert -1.0 <= x <= 1.0
+        assert -1.0 <= y <= 1.0
 
         data = self.soundgen.gen_data([x], [y])
         sounddevice.wait()
@@ -49,9 +53,10 @@ class Display:
         if wait > 0:
             time.sleep(wait)
 
-    def vline(self, x, gap_start, gap_end):
+    def vline(self, x: float, gap_start: float, gap_end: float):
         """Drawing a vertical line at position x. x is in [-1, +1]. A gap is
         drawn between gap_start and gap_end."""
+        assert -1.0 <= x <= 1.0
 
         # holding x/y-values for points to be drawn
         xs = []
@@ -91,13 +96,13 @@ class Bird:
     def draw_bird(self, display: Display):
         display.px(0, self.ypos)
 
-    def is_alive(self, current_x, gap_start, gap_end):
+    def is_alive(self, current_x: float, gap_start: float, gap_end: float):
         return current_x != 0 or gap_start < self.ypos < gap_end
 
-    def fly_up(self, ymax, xydistance):
+    def fly_up(self, ymax: float, xydistance: float):
         self.ypos = min(self.ypos + xydistance, ymax)
 
-    def fall_down(self, xydistance):
+    def fall_down(self, xydistance: float):
         self.ypos = max(0.0, self.ypos - xydistance)
 
 
@@ -128,7 +133,7 @@ class Game:
         GPIO.output(self.pin_audio2, False)
 
     def start_game(self):
-        gap_start, gap_end = 0 + 5 * self.display.xydistance
+        gap_start, gap_end = 0, 0 + 5 * self.display.xydistance
         bird_died = False
         score = 0
 
@@ -136,11 +141,12 @@ class Game:
         GPIO.output(self.pin_audio2, False)
 
         while not bird_died:
-            for x in numpy.arange(self.display.xres(), -1,
+            # count downwards
+            for x in numpy.arange(self.display.xymax, self.display.xymin,
                                   -self.display.xydistance):
                 # handle input
                 if GPIO.input(self.pin_taster):
-                    self.bird.fly_up(self.display.yres(),
+                    self.bird.fly_up(self.display.xymax,
                                      self.display.xydistance)
                 else:
                     self.bird.fall_down(self.display.xydistance)
@@ -162,7 +168,8 @@ class Game:
             self.beep(0.01)
 
             # termine new gap for next wave
-            rnd_start = random.randint(-10, 10) / 10
+            rnd_start = random.randint(10*self.display.xymin,
+                                       10*self.display.xymax) / 10
             if score >= 10:  # xres():
                 # we are unfair here when the user gets too many score
                 gap_start, gap_end = 0, 0 + self.display.xydistance
@@ -188,7 +195,7 @@ def main():
     game = Game(pin_taster=pin_taster, pin_start=pin_start,
                 pin_audio1=pin_audio1, pin_audio2=pin_audio2,
                 board_mode=GPIO.BOARD)
-    # setup()
+
     game.start_game()
 
 if __name__ == "__main__":
