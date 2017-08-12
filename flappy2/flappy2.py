@@ -62,20 +62,18 @@ class Display:
         xs = []
         ys = []
 
-        i = 0
         for y in numpy.arange(-1, 1, self.xydistance):
             if gap_start < y < gap_end:
                 continue
 
-            xs[i] = x
-            ys[i] = y
-
-            i += 1
+            xs.append(x)
+            ys.append(y)
 
         self.draw_points(xs, ys)
 
     def draw_points(self, xs, ys):
         data = self.soundgen.gen_data(xs, ys)
+        print("data", data)
         sounddevice.wait()
         sounddevice.play(data)
 
