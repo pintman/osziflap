@@ -13,9 +13,8 @@ class Soundgenerator:
 
     """
     
-    def __init__(self, samples=44100, chan=2, devicenr=0):
+    def __init__(self, samples=44100, devicenr=0):
         sounddevice.default.device = devicenr
-        self.chan = chan
         self.samples = samples
 
     def gen_random(self) -> numpy.ndarray:
@@ -24,10 +23,10 @@ class Soundgenerator:
         # data = np.random.uniform(0, 100, 44100)
 
     def gen_sine(self) -> numpy.ndarray:
-        data = numpy.empty((self.samples, self.chan),
+        data = numpy.empty((self.samples, sounddevice.default.channels),
                            dtype="float32")
         
-        for ch in range(self.chan):
+        for ch in range(sounddevice.default.channels):
             for ms in range(self.samples):
                 data[ms, ch] = math.sin(0.5 * ms)
                 

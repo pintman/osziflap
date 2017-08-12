@@ -193,6 +193,15 @@ def main():
     pin_audio1 = 36  # audio1 each time the bird is flapping
     pin_audio2 = 32  # audio2 each time a wave has passed
 
+    # configure the sounddevice -
+    # two values assume different values for input and output
+    # sounddevice.default.device = 0
+    # sounddevice.default.channels = 2
+    # sounddevice.default.samplerate = 44100
+    print("Sound devices\n", sounddevice.query_devices())
+    print("channels:", sounddevice.default.channels)
+    print("sample rate:", sounddevice.default.samplerate)
+
     game = Game(pin_taster=pin_taster, pin_start=pin_start,
                 pin_audio1=pin_audio1, pin_audio2=pin_audio2,
                 board_mode=GPIO.BOARD)
