@@ -1,5 +1,5 @@
-import numpy as np
-import sounddevice as sd
+import numpy
+import sounddevice
 import math
 
 
@@ -14,18 +14,18 @@ class Soundgenerator:
     """
     
     def __init__(self, samples=44100, chan=2, devicenr=0):
-        sd.default.device = devicenr
+        sounddevice.default.device = devicenr
         self.chan = chan
         self.samples = samples
 
-    def gen_random(self) -> np.ndarray:
+    def gen_random(self) -> numpy.ndarray:
         # 44100 random samples between -1 and 1
-        return np.random.uniform(-1, 1, self.samples)
+        return numpy.random.uniform(-1, 1, self.samples)
         # data = np.random.uniform(0, 100, 44100)
 
-    def gen_sine(self) -> np.ndarray:
-        data = np.empty((self.samples, self.chan),
-                        dtype="float32")
+    def gen_sine(self) -> numpy.ndarray:
+        data = numpy.empty((self.samples, self.chan),
+                           dtype="float32")
         
         for ch in range(self.chan):
             for ms in range(self.samples):
@@ -34,7 +34,7 @@ class Soundgenerator:
         return data
 
     def gen_data(self, left_data, right_data):
-        return np.array([left_data, right_data])
+        return numpy.array([left_data, right_data])
 
 
 """Accessing the audio jack on the pi:
@@ -71,11 +71,11 @@ def main():
     sg = Soundgenerator()
 
     print("playing random noise")
-    sd.play(sg.gen_random())
-    sd.wait()
+    sounddevice.play(sg.gen_random())
+    sounddevice.wait()
     print("playing sine wave")
-    sd.play(sg.gen_sine())
-    sd.wait()
+    sounddevice.play(sg.gen_sine())
+    sounddevice.wait()
     print("finished")
 
 if __name__ == "__main__":
