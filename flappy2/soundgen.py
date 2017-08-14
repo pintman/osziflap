@@ -23,17 +23,23 @@ class Soundgenerator:
         # data = np.random.uniform(0, 100, 44100)
 
     def gen_sine(self) -> numpy.ndarray:
-        data = numpy.empty((self.samples, sounddevice.default.channels),
-                           dtype="float32")
-        
-        for ch in range(sounddevice.default.channels):
-            for ms in range(self.samples):
-                data[ms, ch] = math.sin(0.5 * ms)
+        data = numpy.empty((self.samples, 2))
+
+        for ms in range(self.samples):
+            data[ms, 0] = math.sin(0.5 * ms)
+            data[ms, 1] = math.sin(0.5 * ms+0.45)
                 
         return data
 
     def gen_data(self, left_data, right_data):
-        return numpy.array([left_data, right_data])
+        assert len(left_data) == len(right_data)
+        
+        a = numpy.empty((len(left_data), 2))
+        for i in range(len(left_data)):
+            a[i, 1] = left_data[i]
+            a[i, 0] = right_data[i]
+            
+        return a
 
 
 """Accessing the audio jack on the pi:
@@ -67,14 +73,16 @@ See page 102 of the Broadcom spec reference above.
     
     
 def main():
-    sg = Soundgenerator()
+    sg = Soundgenerator(samples=100)
 
-    print("playing random noise")
-    sounddevice.play(sg.gen_random())
-    sounddevice.wait()
+    #print("playing random noise")
+    #sounddevice.play(sg.gen_random())
+    #sounddevice.wait()
     print("playing sine wave")
-    sounddevice.play(sg.gen_sine())
-    sounddevice.wait()
+    data = sg.gen_sine()
+    while True:        
+        sounddevice.play(data)
+        sounddevice.wait()
     print("finished")
 
 if __name__ == "__main__":
