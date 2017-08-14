@@ -72,7 +72,7 @@ class Display:
     def vline(self, x: float, gap_start: float, gap_end: float):
         """Drawing a vertical line at position x. x is in [-1, +1]. A gap is
         drawn between gap_start and gap_end."""
-        assert -1.0 <= x <= 1.0
+        assert self.xymin <= x <= self.xymax
 
         # holding x/y-values for points to be drawn
         xs = []
