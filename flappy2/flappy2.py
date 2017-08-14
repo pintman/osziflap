@@ -73,6 +73,7 @@ class Display:
         """Drawing a vertical line at position x. x is in [-1, +1]. A gap is
         drawn between gap_start and gap_end."""
         assert self.xymin <= x <= self.xymax
+        # TODO use line method instead.
 
         # holding x/y-values for points to be drawn
         xs = []
