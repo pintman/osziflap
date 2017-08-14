@@ -55,19 +55,19 @@ class Display:
 
     def line(self, x1, y1, x2, y2):
         """Draw a line from (x1|y1) to (x2|y2)."""
-        xs = []
-        ys = []
+        xs_ys = []
 
         # creating parameter form of line (a, p, v are vectors): p = a + r*v
-        a = numpy.array([x1, x2])
+        a = numpy.array([x1, y1])
         v = numpy.array([x2 - x1, y2 - y1])
 
         for r in numpy.arange(0, 1, self.xydistance):
             p = a + r * v
-            xs.append(p[0])
-            ys.append(p[1])
+            for i in range(5):
+                xs_ys.append([p[0], p[1]])
 
-        self.draw_points(xs, ys)
+        sounddevice.wait()
+        sounddevice.play(xs_ys)
 
     def vline(self, x: float, gap_start: float, gap_end: float):
         """Drawing a vertical line at position x. x is in [-1, +1]. A gap is
@@ -212,7 +212,7 @@ def draw_rectangle():
     |   |
     1---2
     """
-    disp = Display()
+    disp = Display(xydistance=0.001)
     unit = 0.5
     while True:
         disp.line(-unit, -unit, unit, -unit)
@@ -223,7 +223,7 @@ def draw_rectangle():
 
 def main():
     # draw simple rectangle to test
-    # draw_rectangle()
+    draw_rectangle()
 
     pin_taster = 40  # controlling the bird (using switch or pontentiometer)
     pin_start = 38  # a switch controlling the reset/start
