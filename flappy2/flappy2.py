@@ -90,7 +90,6 @@ class Display:
 
     def draw_points(self, xs, ys):
         data = self.soundgen.gen_data(xs, ys)
-        print("data", data)
         sounddevice.wait()
         sounddevice.play(data)
 
