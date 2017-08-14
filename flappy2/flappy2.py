@@ -204,7 +204,28 @@ class Game:
         self.start_game()
 
 
+def draw_rectangle():
+    """
+    Draw a rectangle at origin (marked '.').
+
+    4---3
+    | . |
+    |   |
+    1---2
+    """
+    disp = Display()
+    unit = 0.5
+    while True:
+        disp.line(-unit, -unit, unit, -unit)
+        disp.line(unit, -unit, unit, unit)
+        disp.line(unit, unit, -unit, unit)
+        disp.line(-unit, unit, -unit, -unit)
+
+
 def main():
+    # draw simple rectangle to test
+    # draw_rectangle()
+
     pin_taster = 40  # controlling the bird (using switch or pontentiometer)
     pin_start = 38  # a switch controlling the reset/start
     pin_audio1 = 36  # audio1 each time the bird is flapping
