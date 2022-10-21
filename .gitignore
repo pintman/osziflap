@@ -1,5 +1,4 @@
 __pycache__
 *~
-osziflap-ve
 .idea/
-venv/
+poetry.lock

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "osziflap"
+version = "0.1.0"
+description = ""
+authors = ["Marco Bakera <marco@bakera.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+sounddevice = "^0.4.5"
+numpy = "^1.23.4"
+"RPi.GPIO" = "^0.7.1"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^2.15.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
